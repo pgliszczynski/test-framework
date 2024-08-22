@@ -1,0 +1,62 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version "${allurePluginVersion}"
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${dependencyManagementVersion}"
+}
+
+ext['junit-jupiter.version'] = junitVersion
+
+java {
+    sourceCompatibility = '21'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'com.beust', name: 'jcommander', version: jCommanderVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: commonsLang3Version
+    implementation group: 'org.assertj', name: 'assertj-core', version: assertjVersion
+    implementation group: 'javax.annotation', name: 'javax.annotation-api', version: javaxAnnotationVersion
+    implementation group: 'io.qameta.allure', name: 'allure-junit-platform', version: allureJunitVersion
+    implementation group: 'com.codeborne', name: 'selenide', version: selenideVersion
+    implementation group: 'io.qameta.allure', name: 'allure-selenide', version: allureVersion
+    implementation group: 'com.google.code.gson', name: 'gson', version: gsonVersion
+    implementation group: 'com.browserstack', name: 'browserstack-local-java', version: browserstackLocalVersion
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-api', version: seleniumVersion
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-manager', version: seleniumVersion
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chromium-driver', version: seleniumVersion
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: seleniumVersion
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-remote-driver', version: seleniumVersion
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: seleniumVersion
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-http', version: seleniumVersion
+}
+
+allure {
+    version = allureVersion
+    aspectjweaver = true
+    autoconfigure = false
+    aspectjVersion = aspectVersion
+}
+
+test {
+    useJUnitPlatform()
+    ignoreFailures = true
+    testLogging {
+        showStandardStreams = true
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "os": "Windows",
+  "osVersion": "11",
+  "browserName": "Chrome",
+  "browserVersion": "latest",
+  "resolution": "1920x1080",
+  "projectName": "Mars Platform test automation",
+  "buildName": "Win 11 Chrome latest 1920x1080",
+  "buildIdentifier": "",
+  "debug": "false",
+  "consoleLogs": "info",
+  "video": "true",
+  "geoLocation": "US",
+  "local": "false",
+  "sessionName": ""
+}

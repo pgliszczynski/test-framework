@@ -1,0 +1,56 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version "${allurePluginVersion}"
+    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'io.spring.dependency-management' version "${dependencyManagementVersion}"
+}
+
+ext['junit-jupiter.version'] = junitVersion
+
+java {
+    sourceCompatibility = '21'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation group: 'com.beust', name: 'jcommander', version: jCommanderVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: jacksonVersion
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: commonsLang3Version
+    implementation group: 'org.assertj', name: 'assertj-core', version: assertjVersion
+    implementation group: 'javax.annotation', name: 'javax.annotation-api', version: javaxAnnotationVersion
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: restAssureVersion
+    implementation group: 'io.rest-assured', name: 'json-path', version: restAssureVersion
+    implementation group: 'io.rest-assured', name: 'xml-path', version: restAssureVersion
+    implementation group: 'io.rest-assured', name: 'rest-assured-all', version: restAssureVersion
+    implementation group: 'io.qameta.allure', name: 'allure-rest-assured', version: allureVersion
+    implementation group: 'io.qameta.allure', name: 'allure-junit-platform', version: allureJunitVersion
+}
+
+allure {
+    version = allureVersion
+    aspectjweaver = true
+    autoconfigure = false
+    aspectjVersion = aspectVersion
+}
+
+test {
+    useJUnitPlatform()
+    ignoreFailures = true
+    testLogging {
+        showStandardStreams = true
+    }
+}
